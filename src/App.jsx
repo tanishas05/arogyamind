@@ -2,6 +2,7 @@ import { useState } from "react"
 import RhythmSetup from "./pages/RhythmSetup"
 import Timeline from "./components/timeline"
 import FocusTimer from "./components/FocusTimer"
+import PostureDetector from "./components/PostureDetector"
 
 function App() {
   const [userData, setUserData] = useState(null)
@@ -12,27 +13,10 @@ function App() {
   }
 
   return (
-    <div className="container">
-      {!userData && <RhythmSetup onGenerate={setUserData} />}
-
-      {userData && (
-        <>
-          <h1>Dinacharya Planner</h1>
-
-          <Timeline phases={userData.phases} />
-
-          <div className="card">
-            <h2>Dashboard</h2>
-            <p>Focus Minutes: {focusMinutes}</p>
-            <p>Posture Checks: Coming next</p>
-            <p>Decision Clarity Score: Coming next</p>
-          </div>
-
-          <FocusTimer onComplete={handleFocusComplete} />
-        </>
-      )}
-    </div>
-  )
+  <div className="container">
+    <PostureDetector />
+  </div>
+)
 }
 
 export default App
