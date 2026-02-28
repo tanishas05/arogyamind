@@ -6,10 +6,7 @@ export async function generatePlanner(wake, sleep) {
     },
     body: JSON.stringify({
       wake_time: wake,
-      sleep_time: sleep,
-      work_hours: [["09:00", "17:00"]],
-      stress_level: "Medium",
-      tasks: [{ name: "Math", type: "Deep Work" }],
+      sleep_time: sleep
     }),
   });
 

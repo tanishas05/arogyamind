@@ -21,23 +21,34 @@ class Task(BaseModel):
     name: str
     type: str
 
+from typing import Optional
+
 class PlannerRequest(BaseModel):
     wake_time: str
     sleep_time: str
-    work_hours: list
-    stress_level: str
-    tasks: list
+    work_hours: Optional[list] = []
+    stress_level: Optional[str] = "Medium"
+    tasks: Optional[list] = []
 
 @app.post("/generate-planner")
 def generate_planner(data: PlannerRequest):
 
+    # Default values if frontend doesn't send them
+    work_hours = data.work_hours or [["09:00", "17:00"]]
+    stress = data.stress_level or "Medium"
+    tasks = data.tasks or [
+        {"name": "Deep Work Block", "type": "Deep Work"},
+        {"name": "Creative Session", "type": "Creative"},
+        {"name": "Light Admin", "type": "Light Work"}
+    ]
+
     phases = map_dosha_phases(data.wake_time, data.sleep_time)
 
     schedule = schedule_tasks(
-        data.tasks,
+        tasks,
         phases,
-        data.stress_level,
-        data.work_hours
+        stress,
+        work_hours
     )
 
     enriched_schedule, intervention_log = detect_and_inject(schedule)
