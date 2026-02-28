@@ -4,6 +4,7 @@ import YogaDetector from "./components/YogaDetector";
 import DharmicDecisionFramework from "./components/DharmicDecisionFramework";
 import Navbar from "./components/Navbar";
 import Planner from "./components/Planner";
+import Home from "./components/Home";
 
 // Keep the Home component
 function Home() {
