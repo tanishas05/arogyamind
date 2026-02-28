@@ -5,6 +5,7 @@ import DharmicDecisionFramework from "./components/DharmicDecisionFramework";
 import Navbar from "./components/Navbar";
 import Planner from "./components/Planner";
 
+// Keep the Home component
 function Home() {
   return (
     <div style={{ padding: "40px" }}>
@@ -14,13 +15,14 @@ function Home() {
   );
 }
 
+// Main App component with Navbar and routes
 export default function App() {
   return (
     <>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/planner" element={<Planner />} />   {/* 👈 ADD THIS */}
+        <Route path="/planner" element={<Planner />} />
         <Route path="/posture" element={<PostureDetector />} />
         <Route path="/yoga" element={<YogaDetector />} />
         <Route path="/ddf" element={<DharmicDecisionFramework />} />
